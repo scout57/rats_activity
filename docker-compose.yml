@@ -13,9 +13,9 @@ services:
     working_dir: /project/web
     ports:
       - ${WEB_HTTP_PORT_HOST}:8080
-    command: [ sh, -c, "npm c set cache /tmp --global && tail -f /dev/null" ]
+    command: [ sh, -c, "npm c set cache /tmp --global && yarn && yarn dev" ]
 
-  app:
+  backend:
     image: python:3.12-slim
     restart: "no"
     env_file:
@@ -23,11 +23,11 @@ services:
     ports:
       - ${API_HTTP_PORT_HOST}:8000
     volumes:
-      - ./app:/project/app
+      - ./backend:/project/backend
       - pip-data:/usr/local/lib/python3.12/site-packages/
-      - cache-data:/root/.cache/whisper
-    working_dir: /project/app
-    command: [ sh, -c, "tail -f /dev/null" ]
+      - cache-data:/root/.cache
+    working_dir: /project/backend/server
+    command: [ sh, -c, "pip install -r requirements.txt && python -m uvicorn main:app --workers 1 --host 0.0.0.0 --port 8000" ]
     deploy:
       resources:
         limits:
