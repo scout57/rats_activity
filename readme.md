@@ -4,6 +4,7 @@ GPT Enjoyers. Разметка ЭКоГ
 ### Навигация
 
 - [Исходный код клиента для windows](./backend/app)
+- [Инструкция пользователя клиента для windows](./backend/app)
 - [Скачать готовый клиент для windows](https://drive.google.com/drive/folders/1SZWEocDi2MWtcWiIJJTnnU7k3wW310GF?usp=sharing)
 - [Исходный код Web приложения](./web)
 - [Исходный код HTTP сервера](./backend/server)
